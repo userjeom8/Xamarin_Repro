@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<localControls:TabItemPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="CompucareWard.Views.RemindersPage"
+    xmlns:attached="clr-namespace:CompucareWard.Controls.AttachedProperties"
+    xmlns:localControls="clr-namespace:CompucareWard.Controls"
+    
+    Title="Reminders" attached:SHProperties.Icon="{x:Static localControls:SHIcon.Reminders}" attached:SHProperties.User="{Binding User}" BadgeNumber="{Binding Badge}">
+
+    <ContentPage.Content>
+        <ListView x:Name="ItemsListView" ItemsSource="{ Binding Reminders }" IsGroupingEnabled="true" GroupDisplayBinding="{Binding LongName}" SelectionMode="None" HasUnevenRows="true">
+            <ListView.GroupHeaderTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Label Text="{Binding LongName}" FontSize="Medium" Margin="10,5" VerticalTextAlignment="Center"/>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.GroupHeaderTemplate>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell StyleId="disclosure" attached:ViewCellExtensions.TappedCommand="{Binding BindingContext.PatientSelectedCommand, Source={x:Reference ItemsListView}}" 
+                          attached:ViewCellExtensions.TappedCommandParameter="{Binding}">
+                        <ViewCell.ContextActions>
+                            <MenuItem Command="{Binding BindingContext.EditFrequencyCommand, Source={x:Reference ItemsListView}}" CommandParameter="{Binding }" Text="Obs Frequency"/>
+                        </ViewCell.ContextActions>
+
+                        <Grid Padding="10,5,5,5" ColumnSpacing="2" RowSpacing="2">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding BindingContext.AddNEWSCommand, Source={x:Reference ItemsListView}}" CommandParameter="{Binding }" />
+                            </Grid.GestureRecognizers>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="7" />
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition  />
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <BoxView BackgroundColor="{Binding Patient.StatusColour}" Grid.RowSpan="2" Margin="0,0,2,0"/>
+
+                            <Label Text="{Binding Patient.FullnameReverse}" Style="{StaticResource ListItemTextStyle}" Grid.Column="1" Grid.ColumnSpan="5"/>
+
+                            <Label Style="{StaticResource ListItemDetailTextStyle}" Text="{Binding Patient.DateOfBirth, StringFormat='{}{0:dd-MMM-yyyy}', FallbackValue='', TargetNullValue=''}"
+                                       Grid.Row="1" Grid.Column="1"/>
+                            <Label Style="{StaticResource ListItemDetailTextStyle}" Text="{Binding Patient.Age, StringFormat='({0}y)', TargetNullValue='', FallbackValue=''}" Grid.Row="1" 
+                                   Grid.Column="2"/>
+                            <Label Style="{StaticResource ListItemDetailTextStyle}" Text="{Binding Patient.GenderDescription}" Grid.Row="1" Grid.Column="3"/>
+                            <Label Style="{StaticResource ListItemDetailTextStyle}" Text="|" Grid.Row="1" Grid.Column="4"/>
+                            <Label Style="{StaticResource ListItemDetailTextStyle}" Text="{Binding CurrentBed.Name}" Grid.Row="1" Grid.Column="5" LineBreakMode="TailTruncation"/>
+
+                            <Label VerticalOptions="Center" Text="{Binding MinutesToObservation, TargetNullValue=-, FallbackValue=-}" Grid.Column="6" Grid.RowSpan="2" 
+                                   VerticalTextAlignment="Center">
+                                <Label.Style>
+                                    <Style TargetType="Label">
+                                        <Style.Triggers>
+                                            <DataTrigger TargetType="Label" Binding="{Binding IsDueTimeNegative}" Value="True">
+                                                <Setter Property="TextColor" Value="Red"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Label.Style>
+                            </Label>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage.Content>
+
+</localControls:TabItemPage>

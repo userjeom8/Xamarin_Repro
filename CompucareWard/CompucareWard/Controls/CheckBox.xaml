@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:CompucareWard.Controls"
+    
+    x:Class="CompucareWard.Controls.CheckBox" x:Name="CheckBoxControl" BackgroundColor="Transparent">
+    
+    <ContentView.GestureRecognizers>
+        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+    </ContentView.GestureRecognizers>
+
+    <StackLayout Orientation="Horizontal" Padding="15,10,5,10" Spacing="5">
+        <controls:LabelIcon TextColor="{StaticResource Primary}" Text="{x:Static controls:SHIcon.CheckCircle}" VerticalOptions="Center">
+            <controls:LabelIcon.Triggers>
+                <DataTrigger TargetType="controls:LabelIcon" Binding="{Binding IsChecked, Source={x:Reference CheckBoxControl}}" Value="False">
+                    <Setter Property="Text" Value="{x:Static controls:SHIcon.Circle}" />
+                </DataTrigger>
+            </controls:LabelIcon.Triggers>
+        </controls:LabelIcon>
+        
+        <Label Text="{Binding Text, Source={x:Reference CheckBoxControl}}" Style="{StaticResource ListItemTextStyle}" VerticalOptions="Center" />
+    </StackLayout>
+</ContentView>

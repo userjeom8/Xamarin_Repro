@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="CompucareWard.Views.ObservationFrequencyPage"
+    xmlns:attached="clr-namespace:CompucareWard.Controls.AttachedProperties" 
+    
+    Title="Edit Frequency">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Cancel" Command="{Binding CancelCommand}" attached:SHProperties.IsLeftToolbarItem="True"/>
+        <ToolbarItem Text="Save" Command="{Binding SaveCommand}" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <TableView Intent="Form" HasUnevenRows="True" x:Name="SelectionTable">
+            <TableRoot>
+                <TableSection Title="{Binding TitleName}" attached:BindableLayout.IsBusy="{Binding IsBusy}" attached:BindableLayout.ItemsSource="{Binding FrequencyList}">
+                    <attached:BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell StyleId="disclosure" attached:ViewCellExtensions.TappedCommand="{Binding BindingContext.SaveCommand, Source={x:Reference SelectionTable}}"
+                                      attached:ViewCellExtensions.TappedCommandParameter="{Binding}">
+
+                                <Label Margin="15,10,10,10" Text="{Binding Name}" Style="{StaticResource ListItemTextStyle}"/>
+                            </ViewCell>
+                        </DataTemplate>
+                    </attached:BindableLayout.ItemTemplate>
+                </TableSection>
+            </TableRoot>
+        </TableView>
+    </ContentPage.Content>
+</ContentPage>

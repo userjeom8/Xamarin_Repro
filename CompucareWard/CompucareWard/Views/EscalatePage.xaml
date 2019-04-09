@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<popup:PopupPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns:prismpopup="clr-namespace:Prism.Plugin.Popups;assembly=Prism.Plugin.Popups"
+    
+    x:Class="CompucareWard.Views.EscalatePage" CloseWhenBackgroundIsClicked="False">
+
+    <Grid Padding="20" VerticalOptions="Center" ColumnSpacing="0" RowSpacing="0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <BoxView CornerRadius="5,5,0,0" Grid.ColumnSpan="3" Grid.RowSpan="5" BackgroundColor="{Binding NEWS.FormComponentResults[0].WarningColour}" />
+
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="10,15,10,0" Grid.ColumnSpan="3">
+            <Label Text="{Binding NEWS.FormComponentResults[0].Result, StringFormat='NEW Score of {0}'}" FontAttributes="Bold"  />
+            <Label Text="{Binding NEWS.FormComponentResults[0].WarningText, StringFormat='- {0}'}" FontAttributes="Bold">
+                <Label.Triggers>
+                    <DataTrigger TargetType="{x:Type Label}" Binding="{Binding NEWS.FormComponentResults[0].WarningText}" Value="{x:Null}">
+                        <Setter Property="IsVisible" Value="False" />
+                    </DataTrigger>
+                </Label.Triggers>
+            </Label>
+        </StackLayout>
+
+        <Label HorizontalTextAlignment="Center" Text="{Binding Booking.ObservationFrequencyInMinutes, StringFormat='Frequency: Every {0} mins', TargetNullValue=-, FallbackValue=-}" 
+               Grid.ColumnSpan="3" Grid.Row="1" FontSize="Small" Margin="10,5" />
+        
+        <Label Margin="10,2,10,0" Text="Clinical Response" HorizontalTextAlignment="Start" Grid.Row="2" Grid.ColumnSpan="3" FontSize="Small" FontAttributes="Bold"/>
+        
+        <ScrollView Margin="10,3,10,2" Grid.ColumnSpan="3" HeightRequest="65" Grid.Row="3" >
+            <Label Text="{Binding NEWS.ThresholdTrigger.ResponseText, FallbackValue=-, TargetNullValue=-}" FontSize="Micro" Margin="0,0,0,3"/>
+        </ScrollView>
+
+        <BoxView Grid.Row="4" Grid.ColumnSpan="3" BackgroundColor="LightGray" HeightRequest="0.5" />
+        <BoxView CornerRadius="0,0,5,5" Grid.Row="5" Grid.ColumnSpan="3" BackgroundColor="White" />
+        <Button Text="Continue" Grid.Row="5" Command="{Binding ContinueCommand}"/>
+        <BoxView WidthRequest="0.5" BackgroundColor="LightGray" Grid.Row="5" Grid.Column="1" />
+        <Button Text="Escalate" Grid.Row="5" Grid.Column="2" FontAttributes="Bold" Command="{Binding EscalateCommand}" IsEnabled="{Binding CanEscalate}" />
+    </Grid>
+</popup:PopupPage>

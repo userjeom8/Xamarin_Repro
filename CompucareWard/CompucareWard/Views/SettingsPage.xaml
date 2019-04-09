@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="CompucareWard.Views.SettingsPage"
+    xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
+    xmlns:attached="clr-namespace:CompucareWard.Controls.AttachedProperties" 
+    
+    Title="Settings">
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Cancel" Command="{Binding CancelCommand}" attached:SHProperties.IsLeftToolbarItem="True" AutomationId="CancelButton"/>
+        <ToolbarItem Text="Save" Command="{Binding SaveCommand}" AutomationId="SaveButton"/>
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
+        <TableView Intent="Settings">
+            <TableRoot>
+                <TableSection Title="Endpoint URL's">
+                    <EntryCell Label="API" Text="{Binding ApiEndpoint, Mode=TwoWay}" Keyboard="Url" AutomationId="APIEntry"/>
+                    <EntryCell Label="Identity" Text="{Binding IdentityEndpoint, Mode=TwoWay}" Keyboard="Url" AutomationId="IdentityEntry" />
+                </TableSection>
+            </TableRoot>
+        </TableView>
+    </ContentPage.Content>
+</ContentPage>

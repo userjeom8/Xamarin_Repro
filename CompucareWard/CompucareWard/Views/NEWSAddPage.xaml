@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:conv="clr-namespace:CompucareWard.Converters"
+    xmlns:attached="clr-namespace:CompucareWard.Controls.AttachedProperties"
+    xmlns:controls="clr-namespace:CompucareWard.Controls"
+    xmlns:om="clr-namespace:System.Collections.ObjectModel;assembly=netstandard"
+    x:Class="CompucareWard.Views.NEWSAddPage"
+	Title="{Binding Booking.Patient.FullnameReverse}">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Cancel" Command="{Binding CancelCommand}" attached:SHProperties.IsLeftToolbarItem="True"/>
+        <ToolbarItem Text="Save" Command="{Binding SaveCommand}" />
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
+        <TableView Intent="Form" HasUnevenRows="True" x:Name="NEWSTableView">
+            <TableRoot x:Name="NEWSTableRoot">
+                <TableSection Title="Add Observation" x:Name="SectionHeader">
+                    <!-- NEWS -->
+                    <ViewCell x:Name="ParentViewCell">
+                        <StackLayout Orientation="Vertical" Spacing="0">
+                            <controls:NEWSCell BindingContext="{Binding NEWS.FormComponentResults[0]}" />
+                            <!-- Respirations 0-60 bpm -->
+                            <controls:NEWSEntryCell x:Name="RespirationsEntry" Component="{Binding NEWS.FormComponentResults[0].ChildFormComponentResults[0]}" 
+                                            NextEntry="{Binding Source={x:Reference Scale1Entry}}" />
+                            <!--Sp02 Scale 1 80-100 %-->
+                            <!--Sp02 Scale 2 on Air 70-100 %-->
+                            <!--Sp02 on 02 70-100 %-->
+                            <controls:NEWSPickerEntryCell x:Name="Scale1Entry" ItemsSource="{Binding NEWS.SPOComponents, Mode=OneWay}" SelectedItem="{Binding NEWS.SelectedSPOComponent, Mode=TwoWay}"
+                                                  PreviousEntry="{Binding Source={x:Reference RespirationsEntry}}" NextEntry="{Binding Source={x:Reference AirOrOxygenPicker}}"/>
+                            <!--Air or Oxygen-->
+                            <controls:NEWSPickerCell x:Name="AirOrOxygenPicker" Component="{Binding NEWS.FormComponentResults[0].ChildFormComponentResults[4]}"
+                                             PreviousEntry="{Binding Source={x:Reference Scale1Entry}}" NextEntry="{Binding Source={x:Reference OxygenSupplementEntry}}"/>
+                            <!--O2 Supplement 0-100 %-->
+                            <controls:NEWSEntryCell x:Name="OxygenSupplementEntry" Component="{Binding NEWS.FormComponentResults[0].ChildFormComponentResults[5]}"
+                                            PreviousEntry="{Binding Source={x:Reference AirOrOxygenPicker}}" NextEntry="{Binding Source={x:Reference TargetSaturationEntry}}"
+                                            Result="{Binding NEWS.FormComponentResults[0].ChildFormComponentResults[4].Result}" ResultToMatch="1" />
+                            <!--Target Saturation 88-98 %-->
+                            <controls:NEWSEntryCell x:Name="TargetSaturationEntry" Component="{Binding NEWS.FormComponentResults[0].ChildFormComponentResults[6]}"
+                                            PreviousEntry="{Binding Source={x:Reference OxygenSupplementEntry}}" NextEntry="{Binding Source={x:Reference DevicesPicker}}"
+                                            Result="{Binding NEWS.SelectedSPOComponent.FormComponentSystemTypeId, FallbackValue={x:Null}, TargetNullValue={x:Null}}" ResultToMatch="55" />
+                            <!-- Device List of Devices-->
+                            <controls:NEWSPickerCell x:Name="DevicesPicker" Component="{Binding NEWS.FormComponentResults[0].ChildFormComponentResults[7]}"
+                                             Result="{Binding NEWS.FormComponentResults[0].ChildFormComponentResults[4].Result}" ResultToMatch="1"
+                                             PreviousEntry="{Binding Source={x:Reference TargetSaturationEntry}}" NextEntry="{Binding Source={x:Reference SystolicEntry}}" />
+                            <!-- Blood Pressure 0-300 mm[Hg]-->
+                            <controls:NEWSEntryCell x:Name="SystolicEntry" Component="{Binding NEWS.FormComponentResults[0].ChildFormComponentResults[8]}"
+                                            PreviousEntry="{Binding Source={x:Reference DevicesPicker}}" NextEntry="{Binding Source={x:Reference DiastolicEntry}}"/>
+
+                            <controls:NEWSEntryCell x:Name="DiastolicEntry" Component="{Binding NEWS.FormComponentResults[0].ChildFormComponentResults[9]}"
+                                            PreviousEntry="{Binding Source={x:Reference SystolicEntry}}" NextEntry="{Binding Source={x:Reference PulseEntry}}"/>
+                            <!--Pulse 10-200 bpm-->
+                            <controls:NEWSEntryCell x:Name="PulseEntry" Component="{Binding NEWS.FormComponentResults[0].ChildFormComponentResults[10]}"
+                                            PreviousEntry="{Binding Source={x:Reference DiastolicEntry}}" NextEntry="{Binding Source={x:Reference ConsciousnesssPicker}}"/>
+                            <!--Consciousness (Alert/Confusion/Voice/Pain/Unresponsive)-->
+                            <controls:NEWSPickerCell x:Name="ConsciousnesssPicker" Component="{Binding NEWS.FormComponentResults[0].ChildFormComponentResults[11]}"
+                                             PreviousEntry="{Binding Source={x:Reference PulseEntry}}" NextEntry="{Binding Source={x:Reference TemperatureEntry}}"/>
+                            <!--Temperature 25.0-50.0 C-->
+                            <controls:NEWSEntryCell x:Name="TemperatureEntry" Component="{Binding NEWS.FormComponentResults[0].ChildFormComponentResults[12]}"
+                                            PreviousEntry="{Binding Source={x:Reference ConsciousnesssPicker}}"/>
+                        </StackLayout>
+                    </ViewCell>
+                </TableSection>
+            </TableRoot>
+        </TableView>
+    </ContentPage.Content>
+</ContentPage>

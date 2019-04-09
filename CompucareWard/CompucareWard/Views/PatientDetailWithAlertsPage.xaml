@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CarouselPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="CompucareWard.Views.PatientDetailWithAlertsPage"
+    xmlns:views="clr-namespace:CompucareWard.Views"
+    xmlns:attached="clr-namespace:CompucareWard.Controls.AttachedProperties"
+    xmlns:localControls="clr-namespace:CompucareWard.Controls"
+    xmlns:localAttached="clr-namespace:CompucareWard.Views"
+    xmlns:iOSSpecific="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:objectModel="clr-namespace:System.Collections.ObjectModel;assembly=netstandard"
+    x:Name="PatientDetail" iOSSpecific:Page.LargeTitleDisplay="Never" >
+
+    <CarouselPage.ToolbarItems>
+        <ToolbarItem Command="{Binding AddNEWSCommand}" attached:SHProperties.Icon="{x:Static localControls:SHIcon.PlusCircle}" Text="{OnPlatform UWP=Add}" Icon="plus.png" />
+    </CarouselPage.ToolbarItems>
+
+    <CarouselPage.Children>
+        <views:AlertsPage />
+        <views:PatientOverviewPage />
+        <views:PatientObservationsPage />
+    </CarouselPage.Children>
+</CarouselPage>

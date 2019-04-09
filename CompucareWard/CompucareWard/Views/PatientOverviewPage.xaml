@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:PatientDetailChildPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="CompucareWard.Views.PatientOverviewPage"
+    xmlns:attached="clr-namespace:CompucareWard.Controls.AttachedProperties"
+    xmlns:controls="clr-namespace:CompucareWard.Controls"
+    xmlns:views="clr-namespace:CompucareWard.Views"
+    xmlns:enums="clr-namespace:CompucareWard.Enums"
+    
+    Title="Overview" x:Name="InternalOverviewPage" IsBusy="{Binding IsBusy}">
+    
+    <Grid ColumnSpacing="0" RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        
+        <controls:PatientDetailHeader TabSelectedCommand="{Binding SelectedPageChangedCommand, Source={x:Reference InternalOverviewPage}}"
+                                      SelectedTitle="{Binding Title, Source={x:Reference InternalOverviewPage}}" ShowAlerts="{Binding Booking.Patient.HasAlerts}"/>
+        
+        <TableView Intent="Form" Grid.Row="1">
+            <TableRoot>
+                <TableSection Title="INPATIENT">
+                    <ViewCell>
+                        <Grid Margin="15,0,5,0" ColumnSpacing="0" RowSpacing="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <Label Text="{Binding Booking.CurrentBed.Location.ResidentMedicalOfficer.FullnameReverse, TargetNullValue=-, FallbackValue=-}" Margin="0,5,0,0"/>
+                            <Label Text="Resident Medical Officer" FontSize="Micro" Grid.Row="1" Margin="0,0,0,3" TextColor="#4F658C"/>
+
+                            <controls:RoundButton Grid.Column="1" Grid.RowSpan="2" IsVisible="{Binding ResidentMedicalOfficerContactOptions.HasPhoneNumber}" Margin="4,0"
+                                Command="{Binding ContactRMOCommand}" CommandParameter="{x:Static enums:ContactType.Phone}" Icon="{x:Static controls:SHIcon.Phone}">
+                                <controls:RoundButton.Triggers>
+                                    <MultiTrigger TargetType="{x:Type controls:RoundButton}">
+                                        <MultiTrigger.Conditions>
+                                            <BindingCondition Binding="{Binding ResidentMedicalOfficerContactOptions.HasMessaging}" Value="False" />
+                                            <BindingCondition Binding="{Binding ResidentMedicalOfficerContactOptions.HasEmail}" Value="False" />
+                                        </MultiTrigger.Conditions>
+                                        <Setter Property="Margin" Value="4,0,0,0" />
+                                    </MultiTrigger>
+                                </controls:RoundButton.Triggers>
+                            </controls:RoundButton>
+                            <controls:RoundButton Grid.Column="2" Grid.RowSpan="2" IsVisible="{Binding ResidentMedicalOfficerContactOptions.HasMessaging}" Command="{Binding ContactRMOCommand}" 
+                                CommandParameter="{x:Static enums:ContactType.Message}" Icon="{x:Static controls:SHIcon.Message}" Margin="0,0,4,0">
+                                <controls:RoundButton.Triggers>
+                                    <DataTrigger TargetType="{x:Type controls:RoundButton}" Binding="{Binding ResidentMedicalOfficerContactOptions.HasEmail}" Value="False">
+                                        <Setter Property="Margin" Value="0" />
+                                    </DataTrigger>
+                                </controls:RoundButton.Triggers>
+                            </controls:RoundButton>
+                            <controls:RoundButton Grid.Column="3" Grid.RowSpan="2" IsVisible="{Binding ResidentMedicalOfficerContactOptions.HasEmail}" Command="{Binding ContactRMOCommand}"
+                                CommandParameter="{x:Static enums:ContactType.Email}" Icon="{x:Static controls:SHIcon.Email}"/>
+                        </Grid>
+                    </ViewCell>
+                    <ViewCell>
+                        <Grid Margin="15,0,5,0" ColumnSpacing="0" RowSpacing="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <Label Text="{Binding Booking.AttendingClinician.FullnameReverse, TargetNullValue=-, FallbackValue=-}" Margin="0,5,0,0"/>
+                            <Label Text="Responsible Clinician" FontSize="Micro" Grid.Row="1" Margin="0,0,0,3" TextColor="#4F658C"/>
+
+                            <controls:RoundButton Grid.Column="1" Grid.RowSpan="2" IsVisible="{Binding ResponsibleClinicianContactOptions.HasPhoneNumber}" Margin="4,0"
+                                Command="{Binding ContactClinicianCommand}" CommandParameter="{x:Static enums:ContactType.Phone}" Icon="{x:Static controls:SHIcon.Phone}">
+                                <controls:RoundButton.Triggers>
+                                    <MultiTrigger TargetType="{x:Type controls:RoundButton}">
+                                        <MultiTrigger.Conditions>
+                                            <BindingCondition Binding="{Binding ResponsibleClinicianContactOptions.HasMessaging}" Value="False" />
+                                            <BindingCondition Binding="{Binding ResponsibleClinicianContactOptions.HasEmail}" Value="False" />
+                                        </MultiTrigger.Conditions>
+                                        <Setter Property="Margin" Value="4,0,0,0" />
+                                    </MultiTrigger>
+                                </controls:RoundButton.Triggers>
+                            </controls:RoundButton>
+                            <controls:RoundButton Grid.Column="2" Grid.RowSpan="2" IsVisible="{Binding ResponsibleClinicianContactOptions.HasMessaging}" Command="{Binding ContactClinicianCommand}" 
+                                CommandParameter="{x:Static enums:ContactType.Message}" Icon="{x:Static controls:SHIcon.Message}" Margin="0,0,4,0">
+                                <controls:RoundButton.Triggers>
+                                    <DataTrigger TargetType="{x:Type controls:RoundButton}" Binding="{Binding ResponsibleClinicianContactOptions.HasEmail}" Value="False">
+                                        <Setter Property="Margin" Value="0" />
+                                    </DataTrigger>
+                                </controls:RoundButton.Triggers>
+                            </controls:RoundButton>
+                            <controls:RoundButton Grid.Column="3" Grid.RowSpan="2" IsVisible="{Binding ResponsibleClinicianContactOptions.HasEmail}" Command="{Binding ContactClinicianCommand}"
+                                CommandParameter="{x:Static enums:ContactType.Email}" Icon="{x:Static controls:SHIcon.Email}"/>
+                        </Grid>
+                    </ViewCell>
+                    <ViewCell>
+                        <Grid Margin="15,0,5,0" ColumnSpacing="0" RowSpacing="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <Label Text="{Binding Booking.ResponsibleNurse.FullnameReverse, TargetNullValue=-, FallbackValue=-}" Margin="0,5,0,0"/>
+                            <Label Text="Responsible Nurse" FontSize="Micro" Grid.Row="1" Margin="0,0,0,3" TextColor="#4F658C"/>
+
+                            <controls:RoundButton Grid.Column="1" Grid.RowSpan="2" IsVisible="{Binding ResponsibleNurseContactOptions.HasPhoneNumber}" Command="{Binding ContactNurseCommand}" 
+                                                       CommandParameter="{x:Static enums:ContactType.Phone}" Icon="{x:Static controls:SHIcon.Phone}" Margin="4,0">
+                                <controls:RoundButton.Triggers>
+                                    <MultiTrigger TargetType="{x:Type controls:RoundButton}">
+                                        <MultiTrigger.Conditions>
+                                            <BindingCondition Binding="{Binding ResponsibleNurseContactOptions.HasMessaging}" Value="False" />
+                                            <BindingCondition Binding="{Binding ResponsibleNurseContactOptions.HasEmail}" Value="False" />
+                                        </MultiTrigger.Conditions>
+                                        <Setter Property="Margin" Value="4,0,0,0" />
+                                    </MultiTrigger>
+                                </controls:RoundButton.Triggers>
+                            </controls:RoundButton>
+                            <controls:RoundButton Grid.Column="2" Grid.RowSpan="2" IsVisible="{Binding ResponsibleNurseContactOptions.HasMessaging}" Command="{Binding ContactNurseCommand}" 
+                                                       CommandParameter="{x:Static enums:ContactType.Message}" Icon="{x:Static controls:SHIcon.Message}" Margin="0,0,4,0">
+                                <controls:RoundButton.Triggers>
+                                    <DataTrigger TargetType="{x:Type controls:RoundButton}" Binding="{Binding ResponsibleNurseContactOptions.HasEmail}" Value="False">
+                                        <Setter Property="Margin" Value="0" />
+                                    </DataTrigger>
+                                </controls:RoundButton.Triggers>
+                            </controls:RoundButton>
+                            <controls:RoundButton Grid.Column="3" Grid.RowSpan="2" IsVisible="{Binding ResponsibleNurseContactOptions.HasEmail}" Command="{Binding ContactNurseCommand}"
+                                                       CommandParameter="{x:Static enums:ContactType.Email}" Icon="{x:Static controls:SHIcon.Email}"/>
+                        </Grid>
+                    </ViewCell>
+                    <TextCell StyleId="disclosure" Text="{Binding Booking.ObservationFrequencyInMinutes, StringFormat='Every {0} mins', TargetNullValue=-, FallbackValue=-}" 
+                              Command="{Binding EditFrequencyCommand}" Detail="Observation Frequency" />
+                    <TextCell Text="{Binding Booking.Duration}" Detail="Duration" />
+                    <TextCell Text="{Binding Booking.Discharge, StringFormat='{}{0:H:mm d MMMM yyyy}'}" Detail="Discharge" />
+                </TableSection>
+                <TableSection Title="NEXT OF KIN">
+                    <TextCell Text="{Binding NextOfKin.FullnameReverse, TargetNullValue=-, FallbackValue=-}" 
+                              Detail="{Binding NextOfKin.Relationship, StringFormat='Relationship - {0}', TargetNullValue='Relationship', FallbackValue='Relationship'}" />
+                </TableSection>
+            </TableRoot>
+        </TableView>
+    </Grid>
+</views:PatientDetailChildPage>

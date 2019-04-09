@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<localViews:PatientDetailChildPage  
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:localControls="clr-namespace:CompucareWard.Controls"
+    x:Class="CompucareWard.Views.AlertsPage"
+    xmlns:localViews="clr-namespace:CompucareWard.Views"
+    xmlns:attached="clr-namespace:CompucareWard.Controls.AttachedProperties"
+    Title="Alerts" x:Name="InternalAlertsPage">
+
+    <Grid ColumnSpacing="0" RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <localControls:PatientDetailHeader TabSelectedCommand="{Binding SelectedPageChangedCommand, Source={x:Reference InternalAlertsPage}}"
+                                           SelectedTitle="{Binding Title, Source={x:Reference InternalAlertsPage}}" ShowAlerts="{Binding Booking.Patient.HasAlerts}"/>
+
+        <ListView ItemsSource="{Binding Alerts}" Grid.Row="1" IsRefreshing="{Binding IsBusy}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Detail="{Binding AlertReason.Detail}" Text="{Binding AlertReason.Description}" TextColor="Red"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</localViews:PatientDetailChildPage>

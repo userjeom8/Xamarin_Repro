@@ -1,0 +1,91 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Projects\\CompucareWard\\CompucareWard.API\\CompucareWard.API.csproj": {}
+  },
+  "projects": {
+    "C:\\Projects\\CompucareWard\\CompucareWard.API\\CompucareWard.API.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Projects\\CompucareWard\\CompucareWard.API\\CompucareWard.API.csproj",
+        "projectName": "CompucareWard.API",
+        "projectPath": "C:\\Projects\\CompucareWard\\CompucareWard.API\\CompucareWard.API.csproj",
+        "packagesPath": "C:\\Users\\jamesgb\\.nuget\\packages\\",
+        "outputPath": "C:\\Projects\\CompucareWard\\CompucareWard.API\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\ProgramData\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Projects\\CompucareWard\\NuGet.Config",
+          "C:\\Users\\jamesgb\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 18.2.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\DevExpress 18.1\\Components\\System\\Components\\Packages": {},
+          "C:\\Program Files (x86)\\DevExpress 18.2\\Components\\System\\Components\\Packages": {},
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "http://nuget.office-ad.streets-heaver.com/NuGet/nuget": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.devexpress.com/lIP36If2xkBtscbjbMyAk1YddrxP1ZO3jjqqRMId8VhNhPmcHy/api": {},
+          "https://nugetized.blob.core.windows.net/live-reload/index.json": {},
+          "https://pkgs.dev.azure.com/Streets-Heaver/_packaging/SHCS-ADS/nuget/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.1": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.1": {
+          "dependencies": {
+            "IdentityServer4.AccessTokenValidation": {
+              "target": "Package",
+              "version": "[2.7.0, )"
+            },
+            "Microsoft.AspNetCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.1.1, )",
+              "autoReferenced": true
+            },
+            "Microsoft.AspNetCore.StaticFiles": {
+              "target": "Package",
+              "version": "[2.1.1, )"
+            },
+            "Microsoft.NETCore.App": {
+              "target": "Package",
+              "version": "[2.1.0, )",
+              "autoReferenced": true
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[2.1.6, )"
+            },
+            "StreetsHeaver.Common.Linq": {
+              "target": "Package",
+              "version": "[1.10.0.17, )"
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    }
+  }
+}

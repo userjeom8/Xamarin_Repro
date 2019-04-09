@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<localControls:TabItemPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="CompucareWard.Views.MyPatientsPage"
+    xmlns:attached="clr-namespace:CompucareWard.Controls.AttachedProperties"    
+    xmlns:localControls="clr-namespace:CompucareWard.Controls"    
+    
+    attached:SHProperties.Icon="{x:Static localControls:SHIcon.MyPatients}" IsBusy="{Binding IsBusy, Mode=OneWay}" Title="My Patients" attached:SHProperties.User="{Binding User}">
+
+    <ListView x:Name="ItemsListView" ItemsSource="{Binding Patients}" VerticalOptions="FillAndExpand" HasUnevenRows="true" RefreshCommand="{Binding RefreshCommand}" SeparatorVisibility="Default" 
+              Margin="0,5,0,0" IsPullToRefreshEnabled="True" IsRefreshing="{Binding IsBusy, Mode=OneWay}" CachingStrategy="RecycleElement" SelectionMode="None">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell attached:ViewCellExtensions.TappedCommand="{Binding BindingContext.PatientSelectedCommand, Source={x:Reference ItemsListView}}" 
+                          attached:ViewCellExtensions.TappedCommandParameter="{Binding}">
+                    <ViewCell.ContextActions>
+                        <MenuItem Command="{Binding BindingContext.AddNEWSCommand, Source={x:Reference ItemsListView}}" CommandParameter="{Binding }" Text="Add Obs"/>
+                    </ViewCell.ContextActions>
+
+                    <Grid Padding="10,5,5,5" ColumnSpacing="2" RowSpacing="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="7" />
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="{OnPlatform iOS=38, UWP=50}" />
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <BoxView BackgroundColor="{Binding Patient.StatusColour}" Grid.RowSpan="2" Margin="0,0,2,0" />
+
+                        <Label Text="{Binding Patient.FullnameReverse}" Style="{StaticResource ListItemTextStyle}" Grid.Column="1" Grid.ColumnSpan="5"/>
+
+                        <Label Style="{StaticResource ListItemDetailTextStyle}" Text="{Binding Patient.DateOfBirth, StringFormat='{}{0:dd-MMM-yyyy}', FallbackValue='', TargetNullValue=''}"
+                               Grid.Row="1" Grid.Column="1"/>
+                        <Label Style="{StaticResource ListItemDetailTextStyle}" Text="{Binding Patient.Age, StringFormat='({0}y)', TargetNullValue='', FallbackValue=''}" Grid.Row="1" Grid.Column="2"/>
+                        <Label Style="{StaticResource ListItemDetailTextStyle}" Text="{Binding Patient.GenderDescription}" Grid.Row="1" Grid.Column="3"/>
+                        <Label Style="{StaticResource ListItemDetailTextStyle}" Text="|" Grid.Row="1" Grid.Column="4"/>
+                        <Label Style="{StaticResource ListItemDetailTextStyle}" Text="{Binding CurrentBed.Name}" Grid.Row="1" Grid.Column="5" LineBreakMode="TailTruncation"/>
+
+                        <localControls:LabelIcon IsVisible="{Binding Patient.HasAlerts}" VerticalOptions="Center" TextColor="Red" Text="{x:Static localControls:SHIcon.Alerts}" Grid.RowSpan="2" 
+                                                 Grid.Column="6" Margin="3,0"/>
+
+                        <Label Style="{StaticResource NEWSTextStyle}" Text="{Binding NEWSCurrent.Result, TargetNullValue=-, FallbackValue=-}" x:Name="NEWSLabel" Grid.RowSpan="2" Grid.Column="7"
+                               BackgroundColor="{Binding NEWSCurrent.WarningColour, FallbackValue=#FAFAFA, TargetNullValue=#FAFAFA}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+
+                        <localControls:LabelIcon Text="-" HorizontalTextAlignment="End" VerticalTextAlignment="End" Margin="0,0,2,2" FontSize="Micro" Grid.RowSpan="2" Grid.Column="7">
+                            <localControls:LabelIcon.Triggers>
+                                <DataTrigger TargetType="{x:Type localControls:LabelIcon}" Binding="{Binding IsNEWSUp}" Value="True">
+                                    <Setter Property="Text" Value="{x:Static localControls:SHIcon.LongArrowUp}" />
+                                </DataTrigger>
+                                <DataTrigger TargetType="{x:Type localControls:LabelIcon}" Binding="{Binding IsNEWSUp}" Value="False">
+                                    <Setter Property="Text" Value="{x:Static localControls:SHIcon.LongArrowDown}" />
+                                </DataTrigger>
+                            </localControls:LabelIcon.Triggers>
+                        </localControls:LabelIcon>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+</localControls:TabItemPage>

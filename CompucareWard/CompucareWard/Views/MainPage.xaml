@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:CompucareWard.Views"
+    x:Class="CompucareWard.Views.MainPage"
+    xmlns:attached="clr-namespace:CompucareWard.Controls.AttachedProperties">
+
+    <TabbedPage.Children>
+        <NavigationPage Title="{Binding Title, Source={x:Reference MyPatients}}">
+            <x:Arguments>
+                <views:MyPatientsPage x:Name="MyPatients" />
+            </x:Arguments>
+        </NavigationPage>
+        <NavigationPage Title="{Binding Title, Source={x:Reference AllPatients}}" >
+            <x:Arguments>
+                <views:AllPatientsPage x:Name="AllPatients" />
+            </x:Arguments>
+        </NavigationPage>
+        <NavigationPage Title="{Binding Title, Source={x:Reference Reminders}}">
+            <x:Arguments>
+                <views:RemindersPage x:Name="Reminders" />
+            </x:Arguments>
+        </NavigationPage>
+    </TabbedPage.Children>
+</TabbedPage>

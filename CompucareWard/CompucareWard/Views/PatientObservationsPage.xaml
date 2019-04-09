@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<localViews:PatientDetailChildPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:dxg="clr-namespace:DevExpress.Mobile.DataGrid;assembly=DevExpress.Mobile.Grid.v18.2"
+    x:Class="CompucareWard.Views.PatientObservationsPage"
+    xmlns:attached="clr-namespace:CompucareWard.Controls.AttachedProperties"
+    xmlns:localControls="clr-namespace:CompucareWard.Controls"
+    xmlns:iOSSpecific="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:localViews="clr-namespace:CompucareWard.Views"
+    
+    Title="Observations" x:Name="InternalObservationsPage" IsBusy="{Binding IsBusy}">
+
+    <ContentPage.Resources>
+        <DataTemplate x:Key="CaptionColoumnTemplate">
+            <StackLayout VerticalOptions="Center" BindingContext="{Binding Source}" Margin="3">
+                <Label HorizontalTextAlignment="Start" Text="{Binding Caption}" FontSize="Small" />
+                <Label HorizontalTextAlignment="Start" Text="{Binding UnitAbbreviation}" FontSize="Micro" TextColor="Gray">
+                    <Label.Triggers>
+                        <Trigger TargetType="Label" Property="Text" Value="{x:Null}">
+                            <Setter Property="IsVisible" Value="False" />
+                        </Trigger>
+                    </Label.Triggers>
+                </Label>
+            </StackLayout>
+        </DataTemplate>
+
+        <DataTemplate x:Key="NEWSColoumnTemplate">
+            <Label BackgroundColor="{Binding Value.FormComponentResult.WarningColour, FallbackValue=#FAFAFA, TargetNullValue=#FAFAFA}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                   Text="{Binding Value.FormComponentResult.ResultForDisplay, TargetNullValue=-, FallbackValue=-}"/>
+        </DataTemplate>
+    </ContentPage.Resources>
+
+    <Grid ColumnSpacing="0" RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <localControls:PatientDetailHeader TabSelectedCommand="{Binding SelectedPageChangedCommand, Source={x:Reference InternalObservationsPage}}"
+                                           SelectedTitle="{Binding Title, Source={x:Reference InternalObservationsPage}}" ShowAlerts="{Binding Booking.Patient.HasAlerts}"/>
+        
+        <dxg:GridControl x:Name="NEWSGrid" attached:SHProperties.GridItemsSource="{Binding NEWSResults}" ColumnsAutoWidth="False" Grid.Row="1" AllowEditRows="False"
+                         ColumnHeadersHeight="20" ItemsSource="{Binding NEWSResults}" AllowSort="False" AllowGroup="False" AllowResizeColumns="False" AllowDeleteRows="False">
+            <dxg:GridControl.Columns>
+                <dxg:TemplateColumn FixedStyle="Left" Width="140" FieldName="Caption" Caption=" " DisplayTemplate="{StaticResource CaptionColoumnTemplate}"/>
+                <dxg:TemplateColumn FixedStyle="Left" FieldName="Value1" Width="45" Caption="-" DisplayTemplate="{StaticResource NEWSColoumnTemplate}" ContentAlignment="Center"/>
+                <dxg:TemplateColumn FieldName="Value2" Width="45" Caption="-" DisplayTemplate="{StaticResource NEWSColoumnTemplate}" ContentAlignment="Center"/>
+                <dxg:TemplateColumn FieldName="Value3" Width="45" Caption="-" DisplayTemplate="{StaticResource NEWSColoumnTemplate}" ContentAlignment="Center"/>
+                <dxg:TemplateColumn FieldName="Value4" Width="45" Caption="-" DisplayTemplate="{StaticResource NEWSColoumnTemplate}" ContentAlignment="Center"/>
+                <dxg:TemplateColumn FieldName="Value5" Width="45" Caption="-" DisplayTemplate="{StaticResource NEWSColoumnTemplate}" ContentAlignment="Center"/>
+                <dxg:TemplateColumn FieldName="Value6" Width="45" Caption="-" DisplayTemplate="{StaticResource NEWSColoumnTemplate}" ContentAlignment="Center"/>
+                <dxg:TemplateColumn FieldName="Value7" Width="45" Caption="-" DisplayTemplate="{StaticResource NEWSColoumnTemplate}" ContentAlignment="Center"/>
+                <dxg:TemplateColumn FieldName="Value8" Width="45" Caption="-" DisplayTemplate="{StaticResource NEWSColoumnTemplate}" ContentAlignment="Center"/>
+                <dxg:TemplateColumn FieldName="Value9" Width="45" Caption="-" DisplayTemplate="{StaticResource NEWSColoumnTemplate}" ContentAlignment="Center"/>
+                <dxg:TemplateColumn FieldName="Value10" Width="45" Caption="-" DisplayTemplate="{StaticResource NEWSColoumnTemplate}" ContentAlignment="Center"/>
+                <dxg:TemplateColumn FieldName="Value11" Width="45" Caption="-" DisplayTemplate="{StaticResource NEWSColoumnTemplate}" ContentAlignment="Center"/>
+                <dxg:TemplateColumn FieldName="Value12" Width="45" Caption="-" DisplayTemplate="{StaticResource NEWSColoumnTemplate}" ContentAlignment="Center"/>
+                <dxg:TemplateColumn FieldName="Value13" Width="45" Caption="-" DisplayTemplate="{StaticResource NEWSColoumnTemplate}" ContentAlignment="Center"/>
+                <dxg:TemplateColumn FieldName="Value14" Width="45" Caption="-" DisplayTemplate="{StaticResource NEWSColoumnTemplate}" ContentAlignment="Center"/>
+                <dxg:TemplateColumn FieldName="Value15" Width="45" Caption="-" DisplayTemplate="{StaticResource NEWSColoumnTemplate}" ContentAlignment="Center"/>
+                <dxg:TemplateColumn FieldName="Value16" Width="45" Caption="-" DisplayTemplate="{StaticResource NEWSColoumnTemplate}" ContentAlignment="Center"/>
+                <dxg:TemplateColumn FieldName="Value17" Width="45" Caption="-" DisplayTemplate="{StaticResource NEWSColoumnTemplate}" ContentAlignment="Center"/>
+                <dxg:TemplateColumn FieldName="Value18" Width="45" Caption="-" DisplayTemplate="{StaticResource NEWSColoumnTemplate}" ContentAlignment="Center"/>
+                <dxg:TemplateColumn FieldName="Value19" Width="45" Caption="-" DisplayTemplate="{StaticResource NEWSColoumnTemplate}" ContentAlignment="Center"/>
+                <dxg:TemplateColumn FieldName="Value20" Width="45" Caption="-" DisplayTemplate="{StaticResource NEWSColoumnTemplate}" ContentAlignment="Center"/>
+                <dxg:TemplateColumn FieldName="Value21" Width="45" Caption="-" DisplayTemplate="{StaticResource NEWSColoumnTemplate}" ContentAlignment="Center"/>
+                <dxg:TemplateColumn FieldName="Value22" Width="45" Caption="-" DisplayTemplate="{StaticResource NEWSColoumnTemplate}" ContentAlignment="Center"/>
+                <dxg:TemplateColumn FieldName="Value23" Width="45" Caption="-" DisplayTemplate="{StaticResource NEWSColoumnTemplate}" ContentAlignment="Center"/>
+                <dxg:TemplateColumn FieldName="Value24" Width="45" Caption="-" DisplayTemplate="{StaticResource NEWSColoumnTemplate}" ContentAlignment="Center"/>
+            </dxg:GridControl.Columns>
+        </dxg:GridControl>
+
+        <ActivityIndicator 
+                Grid.Row="1"
+              Color="{StaticResource Primary}"
+              IsRunning="{Binding IsBusy}"
+              IsVisible="{Binding IsBusy}"
+              VerticalOptions="Center"
+              HorizontalOptions="Center" WidthRequest="400">
+        </ActivityIndicator>
+    </Grid>
+</localViews:PatientDetailChildPage>

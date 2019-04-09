@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<controls:NEWSViewCell x:TypeArguments="Entry"
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:attached="clr-namespace:CompucareWard.Controls.AttachedProperties"
+    xmlns:iOSSpecific="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:controls="clr-namespace:CompucareWard.Controls"
+    xmlns:converters="clr-namespace:CompucareWard.Converters"    
+    x:Class="CompucareWard.Controls.NEWSEntryCell" >
+
+    <Grid x:Name="ViewCellRootGrid" Margin="10,3,0,0" RowSpacing="0">
+        <Grid.Resources>
+            <converters:XmlUnitConverter x:Key="XmlUnitConverter"/>
+        </Grid.Resources>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+            <ColumnDefinition Width="42" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="44"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <controls:LabelIcon VerticalOptions="Center" TextColor="{StaticResource Primary}" Text="{x:Static controls:SHIcon.CheckCircle}" Margin="0,0,5,0">
+            <controls:LabelIcon.Triggers>
+                <MultiTrigger TargetType="controls:LabelIcon">
+                    <MultiTrigger.Conditions>
+                        <BindingCondition Binding="{Binding Result, FallbackValue='', TargetNullValue=''}" Value="" />
+                        <BindingCondition Binding="{Binding IsValid}" Value="True"/>
+                    </MultiTrigger.Conditions>
+                    <Setter Property="Text" Value="{x:Static controls:SHIcon.Circle}" />
+                </MultiTrigger>
+                <DataTrigger TargetType="controls:LabelIcon" Binding="{Binding IsValid}" Value="False">
+                    <Setter Property="Text" Value="{x:Static controls:SHIcon.ErrorCircle}" />
+                    <Setter Property="TextColor" Value="Red" />
+                </DataTrigger>
+            </controls:LabelIcon.Triggers>
+        </controls:LabelIcon>
+
+        <Label Text="{Binding Caption}" VerticalOptions="Center" Margin="0,0,5,0" Grid.Column="1"/>
+        <Label Text="{Binding ResultUnits, Converter={StaticResource XmlUnitConverter}}" VerticalTextAlignment="Center" Grid.Column="2" FontSize="Micro" TextColor="Gray" />
+
+        <Label IsVisible="False" TextColor="Red" Grid.Column="1" Grid.ColumnSpan="2" VerticalOptions="End" FontSize="Micro">
+            <Label.Triggers>
+                <DataTrigger TargetType="Label" Binding="{Binding IsValid}" Value="False">
+                    <Setter Property="IsVisible" Value="True" />
+                    <Setter Property="Text" Value="{Binding ValidationDescriptions}" />
+                </DataTrigger>
+            </Label.Triggers>
+        </Label>
+
+        <Button Grid.ColumnSpan="3" HorizontalOptions="Fill" Clicked="OnEditorButtonClick" VerticalOptions="Fill"/>
+        <BoxView BackgroundColor="{Binding WarningColour, TargetNullValue=#FAFAFA, FallbackValue=#FAFAFA}" Grid.Column="3"/>
+        <Entry Text="{Binding Result, Mode=TwoWay}" Grid.Column="3" HorizontalTextAlignment="Center" ReturnType="Next" iOSSpecific:Entry.AdjustsFontSizeToFitWidth="True" MaxLength="{Binding MaxLength}"
+               StyleId="NextPrevious" x:Name="EntryInternal" Keyboard="Numeric" />
+
+        <BoxView HeightRequest="0.5" Color="LightGray" Grid.Row="1" Grid.ColumnSpan="4" Margin="15,0,0,0"/>
+    </Grid>
+</controls:NEWSViewCell>

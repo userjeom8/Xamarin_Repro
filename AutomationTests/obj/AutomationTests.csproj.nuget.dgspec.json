@@ -1,0 +1,77 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Projects\\CompucareWard\\AutomationTests\\AutomationTests.csproj": {}
+  },
+  "projects": {
+    "C:\\Projects\\CompucareWard\\AutomationTests\\AutomationTests.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Projects\\CompucareWard\\AutomationTests\\AutomationTests.csproj",
+        "projectName": "AutomationTests",
+        "projectPath": "C:\\Projects\\CompucareWard\\AutomationTests\\AutomationTests.csproj",
+        "packagesPath": "C:\\Users\\jamesgb\\.nuget\\packages\\",
+        "outputPath": "C:\\Projects\\CompucareWard\\AutomationTests\\obj\\",
+        "projectStyle": "PackageReference",
+        "skipContentFileWrite": true,
+        "fallbackFolders": [
+          "C:\\ProgramData\\Xamarin\\NuGet\\"
+        ],
+        "configFilePaths": [
+          "C:\\Projects\\CompucareWard\\NuGet.Config",
+          "C:\\Users\\jamesgb\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 18.2.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net461"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\DevExpress 18.1\\Components\\System\\Components\\Packages": {},
+          "C:\\Program Files (x86)\\DevExpress 18.2\\Components\\System\\Components\\Packages": {},
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "http://nuget.office-ad.streets-heaver.com/NuGet/nuget": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.devexpress.com/lIP36If2xkBtscbjbMyAk1YddrxP1ZO3jjqqRMId8VhNhPmcHy/api": {},
+          "https://nugetized.blob.core.windows.net/live-reload/index.json": {},
+          "https://pkgs.dev.azure.com/Streets-Heaver/_packaging/SHCS-ADS/nuget/v3/index.json": {}
+        },
+        "frameworks": {
+          "net461": {
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "net461": {
+          "dependencies": {
+            "NUnit": {
+              "target": "Package",
+              "version": "[2.6.4, )"
+            },
+            "NUnitTestAdapter": {
+              "target": "Package",
+              "version": "[2.1.1, )"
+            },
+            "Xamarin.UITest": {
+              "target": "Package",
+              "version": "[2.2.7, )"
+            }
+          }
+        }
+      },
+      "runtimes": {
+        "win": {
+          "#import": []
+        },
+        "win-x64": {
+          "#import": []
+        },
+        "win-x86": {
+          "#import": []
+        }
+      }
+    }
+  }
+}

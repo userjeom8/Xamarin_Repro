@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
+    xmlns:converters="clr-namespace:CompucareWard.Converters"
+    xmlns:iOSSpecific="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    x:Class="CompucareWard.Views.LoginPage" 
+    
+    NavigationPage.HasNavigationBar="False" iOSSpecific:Page.UseSafeArea="True">
+
+    <ContentPage.Resources>
+        <converters:WebNavigationEventArgsConverter x:Key="WebNavigationEventArgsConverter" />
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid>
+            <AbsoluteLayout
+                Grid.Column="0"
+                Grid.ColumnSpan="3"
+                Grid.Row="0" 
+                Grid.RowSpan="2"
+                IsVisible="{Binding IsLogin}">
+                <WebView                         
+                    AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                    AbsoluteLayout.LayoutFlags="All"
+                    HeightRequest="400" WidthRequest="400">
+                    <WebView.Behaviors>
+                        <behaviors:EventToCommandBehavior EventName="Navigating" EventArgsConverter="{StaticResource WebNavigationEventArgsConverter}"
+                            Command="{Binding NavigateCommand}" />
+                        <behaviors:EventToCommandBehavior EventName="Navigated" EventArgsConverter="{StaticResource WebNavigationEventArgsConverter}"
+                            Command="{Binding NavigatedCommand}" />
+                    </WebView.Behaviors>
+                    <WebView.Style>
+                        <Style TargetType="WebView">
+                            <Style.Triggers>
+                                <DataTrigger TargetType="WebView" Binding="{Binding HasLoginUrl}" Value="true">
+                                    <Setter Property="Source" Value="{Binding LoginUrl}"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </WebView.Style>
+                </WebView>
+            </AbsoluteLayout>
+            <Button 
+              Grid.Column="0"
+                Grid.ColumnSpan="3"
+                Grid.Row="0"
+                Grid.RowSpan="2"
+                Text="Settings"
+                VerticalOptions="Start"
+                HorizontalOptions="EndAndExpand"
+                Margin="20,5"
+                Command="{Binding SettingsCommand}" AutomationId="SettingsButton"/>
+            <StackLayout VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="Red"></StackLayout>
+            <ActivityIndicator   
+                Grid.Column="0"
+                Grid.ColumnSpan="3"
+                Grid.Row="0"
+                Grid.RowSpan="2"
+              Color="{StaticResource Primary}"
+              IsRunning="{Binding IsBusy}"
+              IsVisible="{Binding IsBusy}"
+              VerticalOptions="Center"
+              HorizontalOptions="Center" WidthRequest="400">
+            </ActivityIndicator>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

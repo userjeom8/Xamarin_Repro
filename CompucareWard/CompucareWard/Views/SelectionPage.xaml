@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:attached="clr-namespace:CompucareWard.Controls.AttachedProperties" 
+    xmlns:controls="clr-namespace:CompucareWard.Controls"
+    
+    x:Class="CompucareWard.Views.SelectionPage" Title="{Binding Title}">
+    
+    <ContentPage.Content>
+        <TableView Intent="Form" HasUnevenRows="True" x:Name="SelectionTable">
+            <TableRoot>
+                <TableSection Title="{Binding Header}" attached:BindableLayout.ItemsSource="{Binding Items}">
+                    <attached:BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell attached:ViewCellExtensions.TappedCommand="{Binding BindingContext.SelectCommand, Source={x:Reference SelectionTable}}" 
+                                      attached:ViewCellExtensions.TappedCommandParameter="{Binding}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Text="{Binding Value.Name}" Margin="15,10,5,10" />
+
+                                    <controls:LabelIcon Text="{x:Static controls:SHIcon.Tick}" Grid.Column="1" Margin="5,5,10,5" VerticalOptions="Center" TextColor="{StaticResource Primary}">
+                                        <controls:LabelIcon.Triggers>
+                                            <DataTrigger TargetType="{x:Type controls:LabelIcon}" Binding="{Binding IsSelected}" Value="False">
+                                                <Setter Property="IsVisible" Value="False" />
+                                            </DataTrigger>
+                                        </controls:LabelIcon.Triggers>
+                                    </controls:LabelIcon>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </attached:BindableLayout.ItemTemplate>
+                </TableSection>
+            </TableRoot>
+        </TableView>
+    </ContentPage.Content>
+</ContentPage>

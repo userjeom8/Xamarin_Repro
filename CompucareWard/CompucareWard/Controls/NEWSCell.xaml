@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:attached="clr-namespace:CompucareWard.Controls.AttachedProperties"
+    xmlns:controls="clr-namespace:CompucareWard.Controls"
+    x:Class="CompucareWard.Controls.NEWSCell" >
+
+    <Grid Margin="10,3,0,0" RowSpacing="0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+            <ColumnDefinition Width="42" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="44" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!--<controls:LabelIcon VerticalOptions="Center" TextColor="{StaticResource Primary}" Text="{x:Static controls:SHIcon.CheckCircle}">
+            <controls:LabelIcon.Triggers>
+                <DataTrigger TargetType="controls:LabelIcon" Binding="{Binding Text, Source={x:Reference NEWSValueLabel}}" Value="-">
+                    <Setter Property="Text" Value="{x:Static controls:SHIcon.Circle}" />
+                </DataTrigger>
+            </controls:LabelIcon.Triggers>
+        </controls:LabelIcon>-->
+        <Label Text="{Binding Caption}" VerticalOptions="Center" Margin="22,0" Grid.Column="1"/>
+        <Label BackgroundColor="{Binding WarningColour, TargetNullValue=#FAFAFA, FallbackValue=#FAFAFA}" VerticalTextAlignment="Center" x:Name="NEWSValueLabel"
+               HorizontalTextAlignment="Center" Grid.Column="2" Text="{Binding Result, FallbackValue=-, TargetNullValue=-}" />
+
+        <BoxView HeightRequest="0.5" Color="LightGray" Grid.Row="1" Grid.ColumnSpan="3" Margin="15,0,0,0"/>
+    </Grid>
+</ContentView>

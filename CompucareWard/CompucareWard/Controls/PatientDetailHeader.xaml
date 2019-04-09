@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="CompucareWard.Controls.PatientDetailHeader"
+    xmlns:localControls="clr-namespace:CompucareWard.Controls"
+    
+    x:Name="InternalPatientDetailHeader">
+    
+    <ContentView.Resources>
+        <Style TargetType="{x:Type Label}">
+            <Setter Property="TextColor" Value="White" />
+        </Style>
+
+        <Style TargetType="{x:Type Label}" x:Key="DetailLabelStyle">
+            <Setter Property="FontSize" Value="Micro" />
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="LineBreakMode" Value="TailTruncation" />
+        </Style>
+    </ContentView.Resources>
+    
+    <ContentView.Content>
+        <Grid ColumnSpacing="0" RowSpacing="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70" />
+                <RowDefinition Height="30" />
+            </Grid.RowDefinitions>
+
+            <Grid Padding="10,0,8,5" ColumnSpacing="0" BindingContext="{Binding Booking}" HeightRequest="180" Grid.ColumnSpan="6" BackgroundColor="{StaticResource Primary}" RowSpacing="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="{OnPlatform iOS=38, UWP=50}" />
+                </Grid.ColumnDefinitions>
+                
+                <BoxView BackgroundColor="{Binding Patient.StatusColour, TargetNullValue={StaticResource Primary}, FallbackValue={StaticResource Primary}}" WidthRequest="5" />
+                
+                <StackLayout Spacing="0" Margin="5,0" HorizontalOptions="Fill" Grid.Column="1" VerticalOptions="Center">
+                    <Label Text="{Binding Patient.FullnameReverse}" FontSize="Large" VerticalTextAlignment="Start" LineBreakMode="TailTruncation"/>
+
+                    <StackLayout Orientation="Horizontal" Spacing="2" HorizontalOptions="Fill" Margin="0,5,0,2">
+                        <Label Style="{StaticResource DetailLabelStyle}" Text="{Binding Patient.DateOfBirth, StringFormat='{}{0:dd-MMM-yyyy}', FallbackValue='', TargetNullValue=''}"/>
+                        <Label Style="{StaticResource DetailLabelStyle}" Text="{Binding Patient.Age, StringFormat='({0}y)', TargetNullValue='', FallbackValue=''}" />
+                        <Label Style="{StaticResource DetailLabelStyle}" Text="{Binding Patient.GenderDescription}" />
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal" Spacing="2" HorizontalOptions="Fill">
+                        <Label Style="{StaticResource DetailLabelStyle}" Text="{Binding CurrentBed.Location.Name, StringFormat='Ward: {0}'}"/>
+                        <Label Style="{StaticResource DetailLabelStyle}" Text="|"/>
+                        <Label Style="{StaticResource DetailLabelStyle}" Text="{Binding CurrentBed.Name, StringFormat='Bed: {0}'}"/>
+                    </StackLayout>
+                </StackLayout>
+
+                <!--<localControls:LabelIcon IsVisible="{Binding Patient.HasAlerts}" Grid.Column="2" VerticalOptions="Center" Margin="5,0,10,0" TextColor="Red" Text="{x:Static localControls:SHIcon.Alerts}" />-->
+
+                <Label Style="{StaticResource NEWSTextStyle}" Text="{Binding NEWSCurrent.Result, TargetNullValue=-, FallbackValue=-}" x:Name="NEWSLabel" Grid.Column="3" HeightRequest="40"
+                       VerticalOptions="End" BackgroundColor="{Binding NEWSCurrent.WarningColour, FallbackValue=#FAFAFA, TargetNullValue=#FAFAFA}" VerticalTextAlignment="Center" 
+                       HorizontalTextAlignment="Center" Margin="0,0,0,3"/>
+
+                <localControls:LabelIcon Text="-" HorizontalTextAlignment="End" VerticalTextAlignment="End" Margin="0,0,2,5" FontSize="Micro" Grid.Column="3" VerticalOptions="End"
+                                         HeightRequest="40">
+                    <localControls:LabelIcon.Triggers>
+                        <DataTrigger TargetType="{x:Type localControls:LabelIcon}" Binding="{Binding IsNEWSUp}" Value="True">
+                            <Setter Property="Text" Value="{x:Static localControls:SHIcon.LongArrowUp}" />
+                        </DataTrigger>
+                        <DataTrigger TargetType="{x:Type localControls:LabelIcon}" Binding="{Binding IsNEWSUp}" Value="False">
+                            <Setter Property="Text" Value="{x:Static localControls:SHIcon.LongArrowDown}" />
+                        </DataTrigger>
+                    </localControls:LabelIcon.Triggers>
+                </localControls:LabelIcon>
+            </Grid>
+
+            <BoxView BackgroundColor="#A3B5DC" Grid.Row="1" Grid.ColumnSpan="2">
+                <BoxView.Triggers>
+                    <DataTrigger TargetType="{x:Type BoxView}" Binding="{Binding ShowAlerts, Source={x:Reference InternalPatientDetailHeader}}" Value="True">
+                        <Setter Property="BackgroundColor" Value="Red" />
+                    </DataTrigger>
+                </BoxView.Triggers>
+            </BoxView>
+            <BoxView BackgroundColor="#A3B5DC" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="4" />
+
+            <StackLayout Spacing="1" HorizontalOptions="Center" VerticalOptions="Center" Padding="0,3,0,0" Grid.Row="1" IsVisible="False" Grid.ColumnSpan="2">
+                <Label Text="Alerts" HorizontalTextAlignment="Center" FontSize="Micro" TextColor="White"  VerticalTextAlignment="Center"/>
+                <BoxView HeightRequest="1" Color="Transparent" >
+                    <BoxView.Triggers>
+                        <DataTrigger TargetType="BoxView" Binding="{Binding SelectedTitle, Source={x:Reference InternalPatientDetailHeader}}" Value="Alerts">
+                            <Setter Property="Color" Value="White" />
+                        </DataTrigger>
+                    </BoxView.Triggers>
+                </BoxView>
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding TabSelectedCommand, Source={x:Reference InternalPatientDetailHeader}}" CommandParameter="Alerts" />
+                </StackLayout.GestureRecognizers>
+                <StackLayout.Triggers>
+                    <DataTrigger TargetType="{x:Type StackLayout}" Binding="{Binding ShowAlerts, Source={x:Reference InternalPatientDetailHeader}}" Value="True">
+                        <Setter Property="IsVisible" Value="True" />
+                    </DataTrigger>
+                </StackLayout.Triggers>
+            </StackLayout>
+
+            <StackLayout Spacing="1" HorizontalOptions="Center" VerticalOptions="Center" Padding="0,3,0,0" Grid.Row="1" Grid.ColumnSpan="3">
+                <Label Text="Overview" HorizontalTextAlignment="Center" FontSize="Micro" TextColor="White"  VerticalTextAlignment="Center"/>
+                <BoxView HeightRequest="1" Color="Transparent" >
+                    <BoxView.Triggers>
+                        <DataTrigger TargetType="BoxView" Binding="{Binding SelectedTitle, Source={x:Reference InternalPatientDetailHeader}}" Value="Overview">
+                            <Setter Property="Color" Value="White" />
+                        </DataTrigger>
+                    </BoxView.Triggers>
+                </BoxView>
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding TabSelectedCommand, Source={x:Reference InternalPatientDetailHeader}}" CommandParameter="Overview" />
+                </StackLayout.GestureRecognizers>
+                <StackLayout.Triggers>
+                    <DataTrigger TargetType="{x:Type StackLayout}" Binding="{Binding ShowAlerts, Source={x:Reference InternalPatientDetailHeader}}" Value="True">
+                        <Setter Property="Grid.Column" Value="2" />
+                        <Setter Property="Grid.ColumnSpan" Value="2" />
+                    </DataTrigger>
+                </StackLayout.Triggers>
+            </StackLayout>
+
+            <StackLayout Spacing="1" HorizontalOptions="Center" VerticalOptions="Center" Padding="0,3,0,0" BackgroundColor="Transparent" Grid.Column="3" Grid.Row="1" Grid.ColumnSpan="3">
+                <Label Text="Observations" Grid.Column="1" HorizontalTextAlignment="Center" FontSize="Micro" TextColor="White" VerticalTextAlignment="Center"/>
+                <BoxView HeightRequest="1" Color="Transparent" >
+                    <BoxView.Triggers>
+                        <DataTrigger TargetType="BoxView" Binding="{Binding SelectedTitle, Source={x:Reference InternalPatientDetailHeader}}" Value="Observations">
+                            <Setter Property="Color" Value="White" />
+                        </DataTrigger>
+                    </BoxView.Triggers>
+                </BoxView>
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding TabSelectedCommand, Source={x:Reference InternalPatientDetailHeader}}" CommandParameter="Observations" />
+                </StackLayout.GestureRecognizers>
+                <StackLayout.Triggers>
+                    <DataTrigger TargetType="{x:Type StackLayout}" Binding="{Binding ShowAlerts, Source={x:Reference InternalPatientDetailHeader}}" Value="True">
+                        <Setter Property="Grid.Column" Value="4" />
+                        <Setter Property="Grid.ColumnSpan" Value="2" />
+                    </DataTrigger>
+                </StackLayout.Triggers>
+            </StackLayout>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

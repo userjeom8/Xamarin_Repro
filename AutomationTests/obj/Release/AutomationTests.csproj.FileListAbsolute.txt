@@ -1,0 +1,7 @@
+C:\Projects\CompucareWard\AutomationTests\bin\Release\AutomationTests.dll
+C:\Projects\CompucareWard\AutomationTests\bin\Release\nunit.framework.dll
+C:\Projects\CompucareWard\AutomationTests\bin\Release\Xamarin.UITest.dll
+C:\Projects\CompucareWard\AutomationTests\obj\Release\AutomationTests.csprojAssemblyReference.cache
+C:\Projects\CompucareWard\AutomationTests\obj\Release\AutomationTests.csproj.CoreCompileInputs.cache
+C:\Projects\CompucareWard\AutomationTests\obj\Release\AutomationTests.csproj.CopyComplete
+C:\Projects\CompucareWard\AutomationTests\obj\Release\AutomationTests.dll

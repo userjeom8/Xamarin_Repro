@@ -1,0 +1,15 @@
+C:\Projects\CompucareWard\CompucareWard.API\bin\Debug\netcoreapp2.1\CompucareWard.API.deps.json
+C:\Projects\CompucareWard\CompucareWard.API\bin\Debug\netcoreapp2.1\CompucareWard.API.runtimeconfig.json
+C:\Projects\CompucareWard\CompucareWard.API\bin\Debug\netcoreapp2.1\CompucareWard.API.runtimeconfig.dev.json
+C:\Projects\CompucareWard\CompucareWard.API\bin\Debug\netcoreapp2.1\CompucareWard.API.dll
+C:\Projects\CompucareWard\CompucareWard.API\bin\Debug\netcoreapp2.1\CompucareWard.API.pdb
+C:\Projects\CompucareWard\CompucareWard.API\obj\Debug\netcoreapp2.1\CompucareWard.API.csproj.CoreCompileInputs.cache
+C:\Projects\CompucareWard\CompucareWard.API\obj\Debug\netcoreapp2.1\CompucareWard.API.RazorAssemblyInfo.cache
+C:\Projects\CompucareWard\CompucareWard.API\obj\Debug\netcoreapp2.1\CompucareWard.API.RazorAssemblyInfo.cs
+C:\Projects\CompucareWard\CompucareWard.API\obj\Debug\netcoreapp2.1\CompucareWard.API.AssemblyInfoInputs.cache
+C:\Projects\CompucareWard\CompucareWard.API\obj\Debug\netcoreapp2.1\CompucareWard.API.AssemblyInfo.cs
+C:\Projects\CompucareWard\CompucareWard.API\obj\Debug\netcoreapp2.1\CompucareWard.API.RazorTargetAssemblyInfo.cache
+C:\Projects\CompucareWard\CompucareWard.API\obj\Debug\netcoreapp2.1\CompucareWard.API.dll
+C:\Projects\CompucareWard\CompucareWard.API\obj\Debug\netcoreapp2.1\CompucareWard.API.pdb
+C:\Projects\CompucareWard\CompucareWard.API\obj\Debug\netcoreapp2.1\UserSecretsAssemblyInfo.cs
+C:\Projects\CompucareWard\CompucareWard.API\obj\Debug\netcoreapp2.1\CompucareWard.API.csprojAssemblyReference.cache

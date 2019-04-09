@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<popup:PopupPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns:prismpopup="clr-namespace:Prism.Plugin.Popups;assembly=Prism.Plugin.Popups"
+    
+    x:Class="CompucareWard.Views.SavingPage" CloseWhenBackgroundIsClicked="False">
+
+    <Grid VerticalOptions="Center" ColumnSpacing="0" RowSpacing="0" HorizontalOptions="Center">
+        <BoxView CornerRadius="5" BackgroundColor="White" />
+        
+        <StackLayout Orientation="Horizontal" Margin="15">
+            <ActivityIndicator IsRunning="True" VerticalOptions="Center" Color="{StaticResource Primary}"/>
+            <Label Text="Saving..." VerticalTextAlignment="Center" FontSize="Medium"/>
+        </StackLayout>
+    </Grid>
+</popup:PopupPage>

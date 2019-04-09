@@ -1,0 +1,130 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Projects\\CompucareWard\\CompucareWard\\CompucareWard\\CompucareWard.csproj": {}
+  },
+  "projects": {
+    "C:\\Projects\\CompucareWard\\CompucareWard\\CompucareWard\\CompucareWard.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Projects\\CompucareWard\\CompucareWard\\CompucareWard\\CompucareWard.csproj",
+        "projectName": "StreetsHeaver.CompucareWard",
+        "projectPath": "C:\\Projects\\CompucareWard\\CompucareWard\\CompucareWard\\CompucareWard.csproj",
+        "packagesPath": "C:\\Users\\jamesgb\\.nuget\\packages\\",
+        "outputPath": "C:\\Projects\\CompucareWard\\CompucareWard\\CompucareWard\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\ProgramData\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Projects\\CompucareWard\\NuGet.Config",
+          "C:\\Users\\jamesgb\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 18.2.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\DevExpress 18.1\\Components\\System\\Components\\Packages": {},
+          "C:\\Program Files (x86)\\DevExpress 18.2\\Components\\System\\Components\\Packages": {},
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "http://nuget.office-ad.streets-heaver.com/NuGet/nuget": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.devexpress.com/lIP36If2xkBtscbjbMyAk1YddrxP1ZO3jjqqRMId8VhNhPmcHy/api": {},
+          "https://nugetized.blob.core.windows.net/live-reload/index.json": {},
+          "https://pkgs.dev.azure.com/Streets-Heaver/_packaging/SHCS-ADS/nuget/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "dependencies": {
+            "DevExpress.Mobile.Grid": {
+              "target": "Package",
+              "version": "[18.2.3, )"
+            },
+            "IdentityModel": {
+              "target": "Package",
+              "version": "[3.10.6, )"
+            },
+            "Microsoft.AppCenter.Analytics": {
+              "target": "Package",
+              "version": "[1.14.0, )"
+            },
+            "Microsoft.AppCenter.Crashes": {
+              "target": "Package",
+              "version": "[1.14.0, )"
+            },
+            "Microsoft.AppCenter.Push": {
+              "target": "Package",
+              "version": "[1.14.0, )"
+            },
+            "NETStandard.Library": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.0.3, )",
+              "autoReferenced": true
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
+            "PCLCrypto": {
+              "target": "Package",
+              "version": "[2.0.147, )"
+            },
+            "Prism.Core": {
+              "target": "Package",
+              "version": "[7.1.0.431, )"
+            },
+            "Prism.Forms": {
+              "target": "Package",
+              "version": "[7.1.0.431, )"
+            },
+            "Prism.Plugin.Popups": {
+              "target": "Package",
+              "version": "[2.1.0.228, )"
+            },
+            "Prism.Unity.Forms": {
+              "target": "Package",
+              "version": "[7.1.0.431, )"
+            },
+            "Xam.Plugins.Forms.ImageCircle": {
+              "target": "Package",
+              "version": "[3.0.0.5, )"
+            },
+            "Xam.Plugins.Messaging": {
+              "target": "Package",
+              "version": "[5.2.0, )"
+            },
+            "Xamarin.Essentials": {
+              "target": "Package",
+              "version": "[1.1.0, )"
+            },
+            "Xamarin.Forms": {
+              "target": "Package",
+              "version": "[3.6.0.264807, )"
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    }
+  }
+}
