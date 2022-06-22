@@ -20,7 +20,7 @@
     <PackageReference Include="PCLCrypto" Version="2.0.147" />
     <PackageReference Include="Prism.Core" Version="7.1.0.431" />
     <PackageReference Include="Prism.Forms" Version="7.1.0.431" />  
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />  
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />  
     <PackageReference Include="Prism.Plugin.Popups" Version="2.1.0.228" />  
     <PackageReference Include="Prism.Unity.Forms" Version="7.1.0.431" />
     <PackageReference Include="Xam.Plugins.Forms.ImageCircle" Version="3.0.0.5" />
